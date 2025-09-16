@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=printDate
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=day\ month\ date\ year
+comment2.target=void\ printAmerican(java.lang.String,\ java.lang.String,\ int,\ int)
+comment3.params=day\ month\ date\ year
+comment3.target=void\ printEuropean(java.lang.String,\ java.lang.String,\ int,\ int)
+numComments=4
