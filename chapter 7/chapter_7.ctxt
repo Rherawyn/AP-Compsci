@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=chapter_7
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=nums
+comment2.target=int\ indexOfMax(int[])
+comment3.params=n
+comment3.target=boolean[]\ sieve(int)
+numComments=4
