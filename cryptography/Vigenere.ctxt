@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Vigenere
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=plainText\ keyword
+comment2.target=java.lang.String\ encode(java.lang.String,\ java.lang.String)
+comment3.params=cipherText\ keyword
+comment3.target=java.lang.String\ decode(java.lang.String,\ java.lang.String)
+numComments=4
