@@ -25,7 +25,7 @@ public class tictactoe {
             }
             
             String input =in.nextLine();
-            while(input.length() != 3 || input.charAt(1) != ',' || !Character.isDigit(0) || Character.isDigit(2)) {
+            while(input.length() != 3 || input.charAt(1) != ',' || !Character.isDigit(input.charAt(0)) || !Character.isDigit(input.charAt(2))) {
                 System.out.println("invalid input! try again idot");
                 input =in.nextLine();
             }
@@ -35,6 +35,10 @@ public class tictactoe {
             while(x > 2 || x < 0 || y > 2 || y < 0 || board[x][y] != ' ') {
                 System.out.println("invalid move! try again idot");
                 input =in.nextLine();
+                while(input.length() != 3 || input.charAt(1) != ',' || !Character.isDigit(input.charAt(0)) || !Character.isDigit(input.charAt(2))) {
+                    System.out.println("invalid input! try again idot");
+                    input =in.nextLine();
+                }   
                 x = Integer.parseInt(input.substring(2))-1;
                 y = Integer.parseInt(input.substring(0,1))-1;
             } 
@@ -46,7 +50,37 @@ public class tictactoe {
                     board[x][y] = 'O';
                     player = !player;
                 }
+            win = winner(board);
+            if(win == true) {
+                grid(board);
+                if(player) {
+                    System.out.println("O won!");
+                } else {
+                    System.out.println("X won!");
+                }
+            }
         }
+    }
+    
+    public static boolean winner(char[][] grid) {
+        for(int c = 0; c < 3; c++) {
+             if(grid[0][c] != ' ' && grid[0][c] == grid[1][c] && grid[1][c] == grid[2][c]) {
+                    return true;
+             }
+        }
+        
+        for(int r = 0; r < 3; r++) {
+             if(grid[r][0] != ' ' && grid[r][0] == grid[r][1] && grid[r][1] == grid[r][2]) {
+                    return true;
+             }
+        }
+        
+        if(grid[1][1] != ' ' && grid[0][0] == grid[1][1] && grid[1][1] == grid[2][2]) {
+            return true;
+        } else if (grid[1][1] != ' ' && grid[2][0] == grid[1][1] && grid[1][1] == grid[0][2]) {
+            return true;
+        }
+        return false;
     }
     
     public static void grid(char[][] grid) {
