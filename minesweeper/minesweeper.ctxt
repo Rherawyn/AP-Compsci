@@ -2,6 +2,8 @@
 comment0.target=minesweeper
 comment1.params=args
 comment1.target=void\ main(java.lang.String[])
-comment2.params=difficulty
-comment2.target=void\ answerKey(int)
-numComments=3
+comment2.params=
+comment2.target=void\ board()
+comment3.params=difficulty
+comment3.target=void\ answerKey(int)
+numComments=4

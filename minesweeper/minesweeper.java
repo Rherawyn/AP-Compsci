@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class minesweeper {
     static int[][] mineField;
     static boolean[][] revealed;
@@ -10,14 +12,37 @@ class minesweeper {
     
     
     public static void main(String[] args) {
-        mineField = new int[10][10];
-        revealed = new boolean [10][10];
-        answerKey(EASY);
+        Scanner in = new Scanner(System.in);
+        int difficulty = in.nextInt();
+        mineField = new int[difficulty][difficulty];
+        revealed = new boolean [difficulty][difficulty];
+        answerKey(difficulty);
         for(int r = 0; r < mineField.length; r++) {
             for(int c = 0; c < mineField[0].length; c++) {
                 System.out.print(mineField[r][c] + " ");
             }
             System.out.println();
+        }
+        System.out.println();
+        for(int r = 0; r < revealed.length; r++) {
+            for(int c = 0; c < revealed[0].length; c++) {
+                revealed[r][c] = false;
+                System.out.print("? ");
+            }
+            System.out.println();
+        }
+        
+        board();
+    }
+    
+    public static void board() {
+        int i = 0;
+        int x = 0;
+        int y = 0;
+        Scanner in = new Scanner(System.in);
+        while(i == 0) {
+        String input = in.nextLine();
+        System.out.println("\f");
         }
     }
     
@@ -31,12 +56,12 @@ class minesweeper {
             }
         }
         
-        for(int i = 0; i < difficulty; i++) {
-            x = (int) (Math.random() * 10);
-            y = (int) (Math.random() * 10);
+        for(int i = 0; i < (int) (difficulty*difficulty*0.30); i++) {
+            x = (int) (Math.random() * difficulty);
+            y = (int) (Math.random() * difficulty);
             while(mineField[x][y] == BOMB) {
-                x = (int) (Math.random() * 10);
-                y = (int) (Math.random() * 10);
+                x = (int) (Math.random() * difficulty);
+                y = (int) (Math.random() * difficulty);
             }
             mineField[x][y] = BOMB;
         }
