@@ -40,9 +40,53 @@ class minesweeper {
         int x = 0;
         int y = 0;
         Scanner in = new Scanner(System.in);
-        while(i == 0) {
-        String input = in.nextLine();
+        int input = in.nextInt();
         System.out.println("\f");
+        y = input%10 -1;
+        x = (int) input/10 -1;
+        while(revealed[y][x] == true) {
+            System.out.println("bad input");
+            input = in.nextInt();
+            y = input%10 - 1;
+            x = (int) input/10 - 1;
+        }
+        if(mineField[x][y] == 1) {
+            System.out.print("\f");
+            System.out.print("YOU LOSE");
+        } else {
+            sploosh(x,y);
+        }
+            
+        int value = 0;
+        for(int r = 0; r < revealed.length; r++) {
+            for(int c = 0; c < revealed[0].length; c++) {
+                if(revealed[r][c] == true) {
+                    if(mineField[r][c] == 0) {
+                        for(int r2 = r-1; r2 < r+2; r2++) {
+                            for(int c2 = c-1; c2 < c+2; c2++) {
+                                value += mineField[r2][c2];
+                            }
+                        }
+                        System.out.print(value + " ");
+                    } else {
+                        System.out.print("B ");
+                    }
+                } else {
+                    System.out.print("? ");
+                }
+            }
+            System.out.println();
+        }
+    }
+    
+    //for AOE clears
+    public static void sploosh (int r, int c) {
+        if(r < mineField.length && r > 0 && c < mineField[0].length && c > 0 && mineField[r][c] == 0) {
+            revealed[r][c] = true;
+            sploosh(r, c-1);
+            sploosh(r, c+1);
+            sploosh(r-1, c);
+            sploosh(r+1, c);
         }
     }
     
