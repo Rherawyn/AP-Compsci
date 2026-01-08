@@ -42,4 +42,34 @@ public class Fraction {
     
     //behaviour
     
+    public String toString() {
+        return numerator + "/" + denomator;
+    }
+    
+    public int getNum() {
+        return numerator;
+    }
+    
+    public int getDenom() {
+        return denomator;
+    }
+    
+    public double toDecimal() {
+        return (double) numerator/denomator;
+    }
+    
+    //mutator methods
+    
+    public void reduce() {
+        
+    }
+    
+    public void setNum(int num) {
+        numerator = num;
+    }
+    
+    public void setDenom(int num) {
+        denomator = num;
+    }
+    
 }
