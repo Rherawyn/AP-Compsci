@@ -60,8 +60,32 @@ public class Fraction {
     
     //mutator methods
     
+    public int REDUCE(int l, int s) {
+        if(l == s) {
+            return l;
+        } else {
+            if (l > s) {
+                l =- s;
+                return REDUCE(l,s);
+            } else if (s > l) {
+                s =- l;
+                return REDUCE(l,s);
+            }
+        }
+        return 0;
+    }
+    
     public void reduce() {
+        int gcf = GCF(getNum(), getDenom());
+        setNum(getNum()/gcf);
+        setDenom(getDenom()/gcf);
+    }
+    
+    private static int GCF(int a, int b) {
+        if(a == b) return a;
+        a = a-b;
         
+        return GCF(Math.max(a, b), Math.min(a, b));
     }
     
     public void setNum(int num) {
@@ -70,6 +94,36 @@ public class Fraction {
     
     public void setDenom(int num) {
         denomator = num;
+    }
+    
+    //class methods
+    public static Fraction multiply (Fraction a, Fraction b) {
+        if(b.numerator == 0) {
+            System.out.println("die");
+            return null;
+        }
+        
+        int newNum = a.getNum() * b.getDenom();
+        int newDen = a.getDenom() * b.getNum();
+        Fraction c = new Fraction(newNum, newDen);
+        c.reduce();
+        return c;
+    }
+    
+    public static Fraction add (Fraction a, Fraction b) {
+        int newNum = (a.getNum() * b.getDenom()) + (b.getNum() * a.getDenom());
+        int newDen =  a.getDenom() * b.getDenom();
+        Fraction c = new Fraction(newNum, newDen);
+        c.reduce();
+        return c;
+    }
+    
+    public static Fraction subtract (Fraction a, Fraction b) {
+        int newNum = (a.getNum() * b.getDenom()) - (b.getNum() * a.getDenom());
+        int newDen =  a.getDenom() * b.getDenom();
+        Fraction c = new Fraction(newNum, newDen);
+        c.reduce();
+        return c;
     }
     
 }
