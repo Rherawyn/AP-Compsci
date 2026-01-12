@@ -6,6 +6,8 @@ public class Fraction {
     private int numerator;
     private int denomator;
     
+    //final double EPSILON = Math.abs(Math.PI - MILU.toDouble());
+    
     //constructore(s)
     public Fraction() {
         this.numerator = 0;
@@ -83,9 +85,10 @@ public class Fraction {
     
     private static int GCF(int a, int b) {
         if(a == b) return a;
-        a = a-b;
+        int c = Math.max(a,b);
+        c = c - Math.min(a,b);
         
-        return GCF(Math.max(a, b), Math.min(a, b));
+        return GCF(c,Math.min(a,b));
     }
     
     public void setNum(int num) {
