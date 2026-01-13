@@ -6,8 +6,6 @@ public class Fraction {
     private int numerator;
     private int denomator;
     
-    //final double EPSILON = Math.abs(Math.PI - MILU.toDouble());
-    
     //constructore(s)
     public Fraction() {
         this.numerator = 0;
@@ -61,6 +59,10 @@ public class Fraction {
     }
     
     //mutator methods
+    
+    public Fraction findPrime(Fraction f) {
+        return f;
+    }
     
     public int REDUCE(int l, int s) {
         if(l == s) {
