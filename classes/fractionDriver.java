@@ -22,5 +22,15 @@ public class fractionDriver {
         }
         
         System.out.println("b as a decimal is " + b.toDecimal());
+        
+        Fraction f = new Fraction(5,4);
+        
+        while(Math.abs(Math.PI - f.toDecimal()) >= EPSILON) {
+            if(f.toDecimal() > Math.PI) f.setDenom(f.getDenom()+1);
+            if(f.toDecimal() < Math.PI) f.setNum(f.getNum()+1);
+        }
+        System.out.println(f);
+        
+        
     }
 }
