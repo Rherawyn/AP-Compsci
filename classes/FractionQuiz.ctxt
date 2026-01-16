@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=FractionQuiz
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=input\ max
+comment2.target=int\ randomize(int,\ int)
+comment3.params=f1\ f2
+comment3.target=void\ questionType(Fraction,\ Fraction)
+comment4.params=num1\ den1\ num2\ den2
+comment4.target=Fraction\ returnAnswer(int,\ int,\ int,\ int)
+numComments=5
