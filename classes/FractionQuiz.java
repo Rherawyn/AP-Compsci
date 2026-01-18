@@ -17,41 +17,45 @@ public class FractionQuiz {
         System.out.println("Let the Fraction Quiz Begin. Answers should be in lowest terms. Good luck! \n");
         
         while(true) {
-            randomize(num1, 0);
-            randomize(den1, 0);
-            randomize(num2, 0);
-            randomize(den2, 0);
-            randomize(round, 4);
+            num1 = randomize(10);
+            den1 = randomize(10);
+            num2 = randomize(10);
+            den2 = randomize(10);
             Fraction f1 = new Fraction(num1,den1);
             Fraction f2 = new Fraction(num2,den2);
+            round = randomize(4);
             
             questionType(f1, f2);
             
-            System.out.print(f1 + " round " + f2 + " =");
-            
             String answer = in.nextLine();
-            if(answer == "quit") {
+            if(answer.contains("quit")) {
+                Fraction score = new Fraction(wins,games);
+                System.out.println("");
+                System.out.println("Your won " + score + " games, for a score of " + (int)(score.toDecimal()*100) + " percent!");
                 break;
             }
             String answers[] = answer.split("/");
             int n = Integer.parseInt(answers[0]);
             int d = Integer.parseInt(answers[1]);
             Fraction finalAnswer = new Fraction(n,d);
+            finalAnswer.reduce();
             
-            System.out.println(n + " / " + d);
+            System.out.println(n + "/" + d);
             
-            if(finalAnswer == returnAnswer(num1,den1,num2,den2)) {
+            if(returnAnswer(num1,den1,num2,den2).getNum() == finalAnswer.getNum() && returnAnswer(num1,den1,num2,den2).getDenom() == finalAnswer.getDenom()) {
                 System.out.println("Correct!");
+                wins++;
             } else {
                 System.out.println("Wrong, the answer was " + returnAnswer(num1,den1,num2,den2));
             }
+            games++;
             
             
         }
     }
     
-    public static int randomize(int input, int max) {
-        return(int)((Math.random()*10) % max);
+    public static int randomize(int max) {
+        return(int)((Math.random()*max) + 1);
     }
     
     public static void questionType(Fraction f1, Fraction f2) {
@@ -59,22 +63,30 @@ public class FractionQuiz {
             System.out.print(f1 + " + " + f2 + "= ");
         } else if(round == 2) {
             System.out.print(f1 + " - " + f2 + "= ");
-        } else if(round == 2) {
-            System.out.print(f1 + " * " + f2 + "= ");
         } else if(round == 3) {
+            System.out.print(f1 + " * " + f2 + "= ");
+        } else if(round == 4) {
             System.out.print(f1 + " / " + f2 + "= ");
         }
     }
     
     public static Fraction returnAnswer(int num1,int den1,int num2,int den2) {
         if(round == 1) {
-            return new Fraction(((num1 * den2) + (num2 * den1)),(den1 * den2));
+            Fraction tempAns = new Fraction(((num1 * den2) + (num2 * den1)),(den1 * den2));
+            tempAns.reduce();
+            return tempAns;
         } else if(round == 2) {
-            return new Fraction(((num1 * den2) - (num2 * den1)),(den1 * den2));
-        } else if(round == 2) {
-            return new Fraction((num1 * num2), (den1 * den2));
-        } else if(round == 3) {
-            return new Fraction((num1 * den2), (den1 * num2));
+            Fraction tempAns = new Fraction(((num1 * den2) - (num2 * den1)),(den1 * den2));
+            tempAns.reduce();
+            return tempAns;
+        } else if(round == 4) {
+            Fraction tempAns = new Fraction((num1 * num2), (den1 * den2));
+            tempAns.reduce();
+            return tempAns;
+        } else if(round == 5) {
+            Fraction tempAns = new Fraction((num1 * den2), (den1 * num2));
+            tempAns.reduce();
+            return tempAns;
         }
         return new Fraction(0,0);
     }

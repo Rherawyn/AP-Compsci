@@ -9,11 +9,14 @@ class minesweeper {
     final static int EASY = 10;
     final static int MED = 20;
     final static int HARD = 40;
+    static int difficulty = 0;
     
     
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int difficulty = in.nextInt();
+        System.out.print("input difficulty:");
+        difficulty = in.nextInt();
+        System.out.println(difficulty);
         mineField = new int[difficulty][difficulty];
         revealed = new boolean [difficulty][difficulty];
         answerKey(difficulty);
@@ -40,15 +43,17 @@ class minesweeper {
         int x = 0;
         int y = 0;
         Scanner in = new Scanner(System.in);
-        int input = in.nextInt();
+        String getInput = in.nextLine();
+        String input[] = getInput.split("/");
+         x = Integer.parseInt(input[0]);
+         y = Integer.parseInt(input[1]);
         System.out.println("\f");
-        y = input%10 -1;
-        x = (int) input/10 -1;
         while(revealed[y][x] == true) {
             System.out.println("bad input");
-            input = in.nextInt();
-            y = input%10 - 1;
-            x = (int) input/10 - 1;
+            getInput = in.nextLine();
+            input = getInput.split("/");
+            x = Integer.parseInt(input[0]);
+            y = Integer.parseInt(input[1]);
         }
         if(mineField[x][y] == 1) {
             System.out.print("\f");
@@ -80,13 +85,20 @@ class minesweeper {
     }
     
     //for AOE clears
-    public static void sploosh (int r, int c) {
-        if(r < mineField.length && r > 0 && c < mineField[0].length && c > 0 && mineField[r][c] == 0) {
-            revealed[r][c] = true;
-            sploosh(r, c-1);
-            sploosh(r, c+1);
-            sploosh(r-1, c);
-            sploosh(r+1, c);
+    public static void sploosh (int x, int y) {
+        if(x < mineField.length && x > 0 && y < mineField[0].length && y > 0 && mineField[x][y] == 0) {
+            revealed[x][y] = true;
+            sploosh(x, y-1);
+            sploosh(x, y+1);
+            sploosh(x-1, y);
+            sploosh(x+1, y);
+            
+            for(int r = x-1; r < r+2; r++) {
+                for(int c = y-1; c < y+2; c++) {
+                    if(r > -1 && c > -1 && r < difficulty && c < difficulty
+                    && mineField[r][c] > 0) revealed[r][c] = true;
+                }
+            }
         }
     }
     
